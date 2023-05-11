@@ -1,11 +1,9 @@
 
-
 import random
 
 yüksek_riskli_yatirimlar = ["NFT" , "Kripto Para" , "Start-Up Şirketleri" , "Gayrimenkul Yatırım Ortakları"]
 orta_riskli_yatirimlar = ["Hisse Senetleri", "Yatırım Fonları" , "Emlak" , "Döviz Yatırımları"]
 düşük_riskli_yatirimlar = ["Devlet Tahvilleri", "Repo-Ters Repo" , "Vadeli Mevduat" , "Para piyasası"]  
-
 
 class kullanici():
 
@@ -17,10 +15,9 @@ class kullanici():
         self.egitim_durumu = egitim_durumu
         self.tecrube_yili = tecrube_yili
         self.kaybedebilecegi_oran = kaybedebilecegi_oran
+
         self.puan = 0 
         self.kullanici_yasi = 0
-   
-        
 
     def kullanici_profili_hesapla(self):
         
@@ -38,12 +35,10 @@ class kullanici():
             elif self.kullanici_yasi >= 66:
                 print(self.kullanici_yasi)
                 self.puan += 50
-            else :
-                raise ValueError("Lütfen geçerli sayı giriniz")
-            
-            if ValueError:
-                except ValueError:
-            print("Lütfen geçerli bir yaş girin")
+            #else :
+            #    raise ValueError("Lütfen geçerli sayı giriniz")
+            #         
+            #print("Lütfen geçerli bir yaş girin")
             
             
             if self.egitim_durumu == "ilkokul":
@@ -56,8 +51,7 @@ class kullanici():
                 self.puan += 90
             elif self.egitim_durumu == "doktora":
                 self.puan += 100
-            else:
-                raise ValueError("Lütfen geçerli bir şey yazınız")
+            
             if self.tecrube_yili == 0:
                 self.puan += 0
             elif self.tecrube_yili < 5:
@@ -82,55 +76,44 @@ class kullanici():
                 self.puan += 50
             elif self.kaybedebilecegi_oran > 0.05:
                 self.puan += 15
-
-            if self.puan >= 500:
-                print(f"Sayın {self.ad} {self.soyad} , yatırımcı profiliniz yüksek riskli yatırım yapmaya uygundur.")
-                a = yüksek_riskli_yatirimlar
-            elif self.puan >= 375:
-                print(f"Sayın {self.ad} {self.soyad} , yatırımcı profiliniz orta riskli yatırım yapmaya uygundur.")
-                risk_grubu = orta_riskli_yatirimlar
-            elif self.puan >= 300:
-                print(f"Sayın {self.ad} {self.soyad} , yatırımcı profiliniz düşük riskli yatırım yapmaya uygundur.")
-                risk_grubu = düşük_riskli_yatirimlar
-            elif self.puan < 200:
-                print(f"Sayın {self.ad} {self.soyad} , ne yazık ki profiliniz yatırım tavsiyesi vermemiz için uygun değildir.")
-    def tavsiye_et(self, risk_grubu):
-        yüksek_riskli_yatirimlar = ["NFT" , "Kripto Para" , "Start-Up Şirketleri" , "Gayrimenkul Yatırım Ortakları"]
-        orta_riskli_yatirimlar = ["Hisse Senetleri", "Yatırım Fonları" , "Emlak" , "Döviz Yatırımları"]
-        düşük_riskli_yatirimlar = ["Devlet Tahvilleri", "Repo-Ters Repo" , "Vadeli Mevduat" , "Para piyasası"]  
-        #risk_grubu = kullanici.kullanici_profili_hesapla.
         
-        print(random.choice(risk_grubu))             
+    def tavsiye_et(risk_grubu):
 
-    def harf_kontrol(self):
-        while True:
-            try:
-                return input(self.egitim_durumu.lower())
-            except ValueError:
-                print("Lütfen geçerli bir sayı girin.")
+        print(random.choice(yüksek_riskli_yatirimlar))             
 
+    #def harf_kontrol(self):
+    #    while True:
+    #        try:
+    #            return input(self.egitim_durumu.lower())
+    #        except ValueError:
+    #            print("Lütfen geçerli bir sayı girin.")
 
+kullanici1 = kullanici("ad", "soyad", 10000, 15, "eğitim", 2, 0.6)
 
-class yatirimlar():
+try:
+    kullanici1.ad = input("Adınız giriniz: ")
+    kullanici1.soyad = input("Soyadınızı giriniz: ")
+    kullanici1.ana_para = float(input("Lütfen Ana Paranızı giriniz: "))
+    kullanici1.kullanici_yasi = int(input("Yaşınızı giriniz: "))
+    kullanici1.egitim_durumu = input("ilkokul/ortaokul/lise/üniversite/doktora: ")
+    kullanici1.tecrube_yili = float(input("Kaç senelik tecrübeniz vardır: "))
+    kullanici1.kaybedebilecegi_oran = float(input("Ana paranızdan kaybedebileceğiniz paranızın oranını yüzde olarak giriniz(Örn: %80 ise 0.80): "))
 
+except ValueError as e:
+    print(e)
 
-
-    def __init__(self, yatirim_adi, fiyati, risk_orani, vadesi):
-
-        self.yatirim_adi = yatirim_adi
-        self.fiyati = fiyati
-        self.risk_orani = risk_orani
-        self.vadesi = vadesi
-
-kullanici1 = kullanici("bilal", "işçen", 10000, 15, "üniversite", 2, 0.6)
-
-kullanici1.kullanici_yasi = int(input("Yaşınızı giriniz: "))
-kullanici1.egitim_durumu = input("ilkokul/ortaokul/lise/üniversite/doktora: ")
-kullanici1.tecrube_yili = float(input("Kaç senelik tecrübeniz vardır: "))
 kullanici1.kullanici_profili_hesapla()
 
+if kullanici1.puan >= 500:
+    print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , yatırımcı profiliniz yüksek riskli yatırım yapmaya uygundur.")
+    a = yüksek_riskli_yatirimlar
+elif kullanici1.puan >= 375:
+    print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , yatırımcı profiliniz orta riskli yatırım yapmaya uygundur.")
+    risk_grubu = orta_riskli_yatirimlar
+elif kullanici1.puan >= 300:
+    print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , yatırımcı profiliniz düşük riskli yatırım yapmaya uygundur.")
+    risk_grubu = düşük_riskli_yatirimlar
+elif kullanici1.puan < 200:
+    print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , ne yazık ki profiliniz yatırım tavsiyesi vermemiz için uygun değildir.")
 
-#kullanici.tavsiye_et(yüksek_riskli_yatirimlar)
-
-
-
+kullanici1.tavsiye_et()
