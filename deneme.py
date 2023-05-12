@@ -24,32 +24,23 @@ class kullanici():
             if self.kullanici_yasi < 18:
                 print("Yaşınız yatırım yapmak için uygun değil")
             elif self.kullanici_yasi < 31:
-                print(self.kullanici_yasi)
                 self.puan += 100
             elif self.kullanici_yasi < 51:
-                print(self.kullanici_yasi)
                 self.puan += 85
             elif self.kullanici_yasi < 66:
-                print(self.kullanici_yasi)
                 self.puan += 70
             elif self.kullanici_yasi >= 66:
-                print(self.kullanici_yasi)
                 self.puan += 50
-            #else :
-            #    raise ValueError("Lütfen geçerli sayı giriniz")
-            #         
-            #print("Lütfen geçerli bir yaş girin")
-            
-            
-            if self.egitim_durumu == "ilkokul":
+                 
+            if self.egitim_durumu.lower() == "ilkokul":
                 self.puan += 30
-            elif self.egitim_durumu == "ortaokul":
+            elif self.egitim_durumu.lower() == "ortaokul":
                 self.puan += 50    
-            elif self.egitim_durumu == "lise":
+            elif self.egitim_durumu.lower() == "lise":
                 self.puan += 70
-            elif self.egitim_durumu == "üniversite":
+            elif self.egitim_durumu.lower() == "üniversite":
                 self.puan += 90
-            elif self.egitim_durumu == "doktora":
+            elif self.egitim_durumu.lower() == "doktora":
                 self.puan += 100
             
             if self.tecrube_yili == 0:
@@ -76,17 +67,9 @@ class kullanici():
                 self.puan += 50
             elif self.kaybedebilecegi_oran > 0.05:
                 self.puan += 15
-        
-    def tavsiye_et(risk_grubu):
 
-        print(random.choice(yüksek_riskli_yatirimlar))             
-
-    #def harf_kontrol(self):
-    #    while True:
-    #        try:
-    #            return input(self.egitim_durumu.lower())
-    #        except ValueError:
-    #            print("Lütfen geçerli bir sayı girin.")
+def tavsiye_et(risk_grubu):
+    print(random.choice(risk_grubu))             
 
 kullanici1 = kullanici("ad", "soyad", 10000, 15, "eğitim", 2, 0.6)
 
@@ -106,7 +89,7 @@ kullanici1.kullanici_profili_hesapla()
 
 if kullanici1.puan >= 500:
     print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , yatırımcı profiliniz yüksek riskli yatırım yapmaya uygundur.")
-    a = yüksek_riskli_yatirimlar
+    risk_grubu = yüksek_riskli_yatirimlar
 elif kullanici1.puan >= 375:
     print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , yatırımcı profiliniz orta riskli yatırım yapmaya uygundur.")
     risk_grubu = orta_riskli_yatirimlar
@@ -116,4 +99,4 @@ elif kullanici1.puan >= 300:
 elif kullanici1.puan < 200:
     print(f"Sayın {kullanici1.ad} {kullanici1.soyad} , ne yazık ki profiliniz yatırım tavsiyesi vermemiz için uygun değildir.")
 
-kullanici1.tavsiye_et()
+tavsiye_et(risk_grubu=risk_grubu)
